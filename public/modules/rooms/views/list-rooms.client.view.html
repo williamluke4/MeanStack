@@ -1,0 +1,44 @@
+<section data-ng-controller="RoomsController" data-ng-init="find()">
+    <div class="container" >
+        <div class="row clearfix">
+            <div class="col-md-6 column rooms" ng-repeat="room in rooms">
+                <div class="row clearfix">
+                    <div class="col-md-12 column" ng-href="/#!/rooms/{{room._id}}" >
+                        <h2 class='text-center'data-ng-bind="room.name" ng-href="/#!/rooms/{{room._id}}"></h2>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-md-6 col-sm-6 column" ng-repeat="switch in room.switches">
+                        <div class="row clearfix">
+                            <div class="col-md-8 col-xs-8 column">
+                                <h3 ng-bind="switch.name | uppercase"></h3>
+                            </div>
+
+                            <div class="col-md-4 col-xs-4 column container toggle">
+                                <toggle-switch ng-click="toggleStatus(room)" ng-model="switch.state"><toggle-switch>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <small class="list-group-item-text">
+                    Posted on
+                    <span data-ng-bind="room.created | date:'medium'"></span>
+                    by
+                    <span data-ng-bind="room.user.displayName"></span>
+                </small>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="alert alert-warning text-center" data-ng-hide="!rooms.$resolved || rooms.length">
+    	No Rooms yet, why don't you <a href="/#!/rooms/create">create one</a>?
+    </div>
+</section>
+
+
+

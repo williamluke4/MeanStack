@@ -1,0 +1,84 @@
+<section data-ng-controller="RoomsController" data-ng-init="findOne()">
+    <div class="page-header">
+        <h1>Edit Room</h1>
+    </div>
+    <div class="col-md-12">
+        <form data-ng-submit="update()" novalidate>
+            <fieldset>
+                <div class="form-group">
+                    <label class="control-label" for="name">Name</label>
+                    <div class="controls">
+                        <input type="text" data-ng-model="room.name" id="name" class="form-control" placeholder="Name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="name">Room ID</label>
+                    <div class="controls">
+                        <input type="number" data-ng-model="room.id" id="id" class="form-control" placeholder="ID" required>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6 col-xs-6 switch" ng-repeat="switch in room.switches">
+
+                    <div class="form-group">
+                        <label class="control-label" for="name">Switch Name</label>
+                        <div class="controls">
+                            <input type="text" data-ng-model="switch.name" id="switches-name" class="form-control" placeholder="Enter Room ID" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="name">Switch ID</label>
+                        <div class="controls">
+                            <input type="number" data-ng-model="switch.id" id="switches-id" class="form-control" placeholder="Enter Switch ID" required>
+                        </div>
+                    </div>
+                    <div class="pull-right" data-ng-show="((authentication.user) && (authentication.user._id == room.user._id))">
+                        <a class="btn btn-primary" data-ng-click="removeSwitch($index);">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-default">
+                    </div>
+
+
+                </div>
+
+				<div data-ng-show="error" class="text-danger">
+					<strong data-ng-bind="error"></strong>
+				</div>
+            </fieldset>
+        </form>
+        <h1> Switch Add Test</h1>
+        <form class="form-horizontal" data-ng-submit="addSwitch()" novalidate>
+            <fieldset>
+                <div class="container">
+                    <div class="form-group">
+                        <label class="control-label" for="name">Switch Name</label>
+                        <div class="controls">
+                            <input type="text" data-ng-model="newSwitch.name" id="switches-name" class="form-control" placeholder="Enter Switch Name" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="name">Switch ID</label>
+                        <div class="controls">
+                            <input type="number" data-ng-model="newSwitch.id" id="switches-id" class="form-control" placeholder="Enter Switch ID" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Add" class="btn btn-default">
+                    </div>
+                    <div data-ng-show="error" class="text-danger">
+                        <strong data-ng-bind="error"></strong>
+                    </div>
+
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+</section>
