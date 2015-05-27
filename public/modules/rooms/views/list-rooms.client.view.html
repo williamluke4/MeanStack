@@ -3,25 +3,26 @@
         <div class="row clearfix">
             <div class="col-md-6 column rooms" ng-repeat="room in rooms">
                 <div class="row clearfix">
-                    <div class="col-md-12 column" ng-href="/#!/rooms/{{room._id}}" >
-                        <h2 class='text-center'data-ng-bind="room.name" ng-href="/#!/rooms/{{room._id}}"></h2>
-                    </div>
+                    <a data-ng-href="/#!/rooms/{{room._id}}" >
+                        <div class="col-md-12 column" >
+                            <h2 class='text-center' data-ng-bind="room.name"></h2>
+                        </div>
+                    </a>
                 </div>
 
                 <div class="row clearfix">
-                    <div class="col-md-6 col-sm-6 column" ng-repeat="switch in room.switches">
-                        <div class="row clearfix">
-                            <div class="col-md-8 col-xs-8 column">
-                                <h3 ng-bind="switch.name | uppercase"></h3>
+                        <div class="col-md-6 col-sm-6 column" ng-repeat="switch in room.switches" class="list-group-item" >
+                            <div class="row clearfix">
+                                <div class="col-md-6 col-xs-6 column">
+                                    <h3 ng-bind="switch.name | uppercase"></h3>
+                                </div>
+
+                                <div class="col-md-6 col-xs-6 column container toggle">
+                                    <toggle-switch ng-click="toggleStatus(room)" ng-model="switch.state"><toggle-switch>
+                                </div>
                             </div>
 
-                            <div class="col-md-4 col-xs-4 column container toggle">
-                                <toggle-switch ng-click="toggleStatus(room)" ng-model="switch.state"><toggle-switch>
-                            </div>
                         </div>
-
-                    </div>
-
                 </div>
                 <small class="list-group-item-text">
                     Posted on
@@ -32,6 +33,7 @@
             </div>
         </div>
     </div>
+
 
 
 

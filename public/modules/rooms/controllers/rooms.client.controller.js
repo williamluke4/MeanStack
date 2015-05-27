@@ -97,12 +97,19 @@ angular.module('rooms').controller('RoomsController', ['$scope', '$stateParams',
 
 
 		Socket.on('room.created', function(room) {
-			console.log(room);
 		});
         Socket.on('room.updated', function(room) {
-            $scope.rooms = Rooms.query();
-            console.log(room.name +" Has Been Updated")
-            console.log(room);
+			for( var i = 0; i < $scope.rooms.length; i++ ) {
+
+
+				if ($scope.rooms[i].name === room.name){
+					console.log($scope.rooms[i].name +  room.name );
+					$scope.rooms[i].switches = room.switches;
+
+				}
+
+			}
+
         });
 	}
 ]);
