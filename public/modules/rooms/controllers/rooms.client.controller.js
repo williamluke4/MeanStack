@@ -1,8 +1,8 @@
 'use strict';
 
 // Rooms controller
-angular.module('rooms').controller('RoomsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Rooms',
-	function($scope, $stateParams, $location, Authentication, Rooms) {
+angular.module('rooms').controller('RoomsController', ['$scope', '$stateParams', '$location','Socket', 'Authentication', 'Rooms',
+	function($scope, $stateParams, $location, Socket ,Authentication, Rooms) {
 		$scope.authentication = Authentication;
 
 		// Create new Room
@@ -94,5 +94,15 @@ angular.module('rooms').controller('RoomsController', ['$scope', '$stateParams',
         $scope.toggleStatus = function() {
 			this.room.$update();
         };
+
+
+		Socket.on('room.created', function(room) {
+			console.log(room);
+		});
+        Socket.on('room.updated', function(room) {
+            $scope.rooms = Rooms.query();
+            console.log(room.name +" Has Been Updated")
+            console.log(room);
+        });
 	}
 ]);

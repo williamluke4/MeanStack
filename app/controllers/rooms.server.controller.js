@@ -21,6 +21,8 @@ exports.create = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
+			var socketio = req.app.get('socketio'); // tacke out socket instance from the app container
+			socketio.sockets.emit('room.created', room); // emit an event for all connected clients
 			res.jsonp(room);
 		}
 	});
@@ -48,6 +50,9 @@ exports.update = function(req, res) {
 			});
 		} else {
 			res.jsonp(room);
+			var socketio = req.app.get('socketio'); // tacke out socket instance from the app container
+			socketio.sockets.emit('room.updated', room); // emit an event for all connected clients
+
 		}
 	});
 };
