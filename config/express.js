@@ -158,6 +158,7 @@ module.exports = function(db) {
 		// Return HTTPS server instance
 		return httpsServer;
 	}
+	//Socket IO Debug
 
 	// Attach Socket.io
 	var server = http.createServer(app);
